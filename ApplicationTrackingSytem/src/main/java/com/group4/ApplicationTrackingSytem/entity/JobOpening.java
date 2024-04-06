@@ -7,25 +7,26 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.Accessors;
 
 import java.util.Date;
 
 @Data
+@Accessors(chain = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table (name = "ATS_APPLICANTS_TABLE")
-public class Applicant {
+@Table (name = "ATS_JOB_OPENINGS_TABLE")
+public class JobOpening {
     @Id
     @GeneratedValue
-    private int id;
-    private String name;
-    private String phoneNumber;
-    private String gender;
-    private String mail;
+    private int jobId;
+    private String jobTitle;
+    private String status;
+    private Date datePosted;
+    private String location;
+    private String workMode;
+    private String renumeration;
     private String role;
-    private Date dateOfApplication;
-    private String country;
-    private String resume;
-    private String applicantId;
 }
