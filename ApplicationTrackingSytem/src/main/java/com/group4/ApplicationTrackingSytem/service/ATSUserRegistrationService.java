@@ -9,6 +9,7 @@ import com.group4.ApplicationTrackingSytem.model.User;
 import com.group4.ApplicationTrackingSytem.model.VerificationToken;
 import com.group4.ApplicationTrackingSytem.repositories.UserRepository;
 import com.group4.ApplicationTrackingSytem.repositories.VerificationTokenRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -39,6 +40,7 @@ public class ATSUserRegistrationService implements UserService{
 
 
     @Override
+    @Transactional
     public User createUser(CreateUserRequest createUserRequest) throws ApplicationTrackingSystemException {
         // Check if the user already exists
         if (userRepository.findByEmail(createUserRequest.getEmail()).isPresent()) {
@@ -56,7 +58,9 @@ public class ATSUserRegistrationService implements UserService{
         newUser.setLastName(createUserRequest.getLastName());
         String token =  UUID.randomUUID().toString();
         VerificationToken verificationToken = new VerificationToken(token, newUser);
-        tokenRepository.save(verificationToken);
+       tokenRepository.save(verificationToken);
+//        log.info("ver token {}", token1);
+//        log.info("ver token {}", verificationToken);
         newUser.setToken(verificationToken);
         newUser.setAuthorities(List.of(USER));
 

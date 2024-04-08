@@ -27,7 +27,7 @@ import static com.group4.ApplicationTrackingSytem.model.Authority.USER;
 @Service
 @AllArgsConstructor
 public class AuthServiceImplementation implements AuthService{
-    private final ATSEmailService mailService;
+//    private final ATSEmailService mailService;
     private final ModelMapper modelMapper;
     private final UserService userService;
     private final VerificationTokenRepository tokenRepository;
@@ -60,7 +60,7 @@ public class AuthServiceImplementation implements AuthService{
 
 
         emailRequest.setSubject("College Course Reg PASSWORD REQUEST");
-        mailService.sendSimpleMail(emailRequest);
+//        mailService.sendSimpleMail(emailRequest);
 
 
     }

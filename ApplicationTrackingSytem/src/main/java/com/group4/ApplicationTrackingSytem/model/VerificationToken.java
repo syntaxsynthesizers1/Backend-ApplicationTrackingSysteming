@@ -12,6 +12,7 @@ import java.util.Date;
 @Setter
 @Entity
 @NoArgsConstructor
+@Table (name = "ATS_VERIFICATION_TOKEN_TABLE")
 public class VerificationToken {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,5 +37,15 @@ public class VerificationToken {
         calendar.setTimeInMillis(new Date().getTime());
         calendar.add(Calendar.MINUTE, EXPIRATION_TIME);
         return new Date(calendar.getTime().getTime());
+    }
+
+    @Override
+    public String toString() {
+        return "VerificationToken{" +
+                "id=" + id +
+                ", token='" + token + '\'' +
+                ", expiryDate=" + expirationTime +
+                // Include other fields as needed
+                '}';
     }
 }
