@@ -54,14 +54,19 @@ public class JobOpeningServiceImplementation implements JobOpeningsService {
 
     @Override
     public JobOpening updateOpening(JobOpening jobOpening) {
-        JobOpening exisitingOpening = jobOpeningsRepository.findById(jobOpening.getJobId()).orElse(null);
-        assert exisitingOpening != null;
-        exisitingOpening.setLocation(jobOpening.getLocation())
-                .setJobTitle(jobOpening.getJobTitle())
-                .setStatus(jobOpening.getStatus())
-                .setWorkMode(jobOpening.getWorkMode())
-                .setRenumeration(jobOpening.getRenumeration());
-        return jobOpeningsRepository.save(exisitingOpening);
+        return null;
     }
+
+//    @Override
+//    public JobOpening updateOpening(JobOpening jobOpening) {
+//        JobOpening exisitingOpening = jobOpeningsRepository.findById(jobOpening.getJobId()).orElse(null);
+//        assert exisitingOpening != null;
+//        exisitingOpening.setLocation(jobOpening.getLocation())
+//                .setJobTitle(jobOpening.getJobTitle())
+//                .setStatus(jobOpening.getStatus())
+//                .setWorkMode(jobOpening.getWorkMode())
+//                .setRenumeration(jobOpening.getRenumeration());
+//        return jobOpeningsRepository.save(exisitingOpening);
+//    }
 
 }

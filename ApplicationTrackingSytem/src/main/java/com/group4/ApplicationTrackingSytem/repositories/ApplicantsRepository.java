@@ -9,8 +9,8 @@ import java.util.List;
 
 public interface ApplicantsRepository extends JpaRepository<Applicant, Integer> {
 
-    @Query(value = "SELECT e FROM Applicant e WHERE e.applicantId = :applicantId")
-    List<Applicant> findByApplicantId(@Param("applicantId") int applicantId);
+    @Query(value = "SELECT e FROM Applicant e WHERE e.userId = :userId")
+    List<Applicant> findByApplicantId(@Param("userId") int userId);
 
 
 }

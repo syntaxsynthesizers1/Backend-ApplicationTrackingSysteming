@@ -4,6 +4,7 @@ import com.group4.ApplicationTrackingSytem.dto.ApplicationsData;
 import com.group4.ApplicationTrackingSytem.dto.GetApplicant;
 import com.group4.ApplicationTrackingSytem.entity.Applicant;
 import com.group4.ApplicationTrackingSytem.model.Response;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -16,6 +17,8 @@ public interface ApplicantsService {
 
     public Response getApplicantById(GetApplicant getApplicant);
     public ApplicationsData<Applicant> getApplications();
+
+    public String uploadFile (MultipartFile multipartFile,Applicant applicant);
 
 
 

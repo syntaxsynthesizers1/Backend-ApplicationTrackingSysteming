@@ -1,9 +1,18 @@
 package com.group4.ApplicationTrackingSytem.security;
 
+import com.group4.ApplicationTrackingSytem.security.filters.ApplicationTrackingAuthenticationFilter;
+import com.group4.ApplicationTrackingSytem.security.filters.ApplicationTrackingAuthorizationFilter;
+import com.group4.ApplicationTrackingSytem.security.manager.ApplicantTrackingAuthenticationManager;
+import com.group4.ApplicationTrackingSytem.security.services.JwtService;
+import com.group4.ApplicationTrackingSytem.security.utils.SecurityUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 
 import java.util.List;
@@ -12,9 +21,9 @@ import java.util.List;
 @AllArgsConstructor
 public class SecurityConfig {
 
-    private final AuthenticationManager authenticationManager;
+    private final ApplicantTrackingAuthenticationManager authenticationManager;
     private final JwtService jwtService;
-    private final CollegeCourseAuthorizationFilter authorizationFilter;
+    private final ApplicationTrackingAuthorizationFilter authorizationFilter;
 
 
 
@@ -27,8 +36,8 @@ public class SecurityConfig {
                     corsConfiguration.setAllowedMethods(List.of("POST", "PUT", "GET"));
                     corsConfiguration.setAllowedOrigins(List.of("*"));
                 })
-                .addFilterAt(new CollegeCourseAuthenticationFilter(authenticationManager, jwtService), UsernamePasswordAuthenticationFilter.class)
-                .addFilterBefore(authorizationFilter, CollegeCourseAuthenticationFilter.class)
+                .addFilterAt(new ApplicationTrackingAuthenticationFilter(authenticationManager, jwtService), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(authorizationFilter, ApplicationTrackingAuthenticationFilter.class)
                 .authorizeHttpRequests(c->c.requestMatchers(getPublicEndpoints()).permitAll()
                                 .anyRequest().authenticated()
                         //     .requestMatchers(HttpMethod.PUT, "/api/v1/auth", "/api/v1/auth/**").hasAnyAuthority(Authority.USER.name())
