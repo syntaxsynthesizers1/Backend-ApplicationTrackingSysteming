@@ -1,9 +1,6 @@
 package com.group4.ApplicationTrackingSytem.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,5 +23,8 @@ public class Applicant {
     private String role;
     private Date dateOfApplication;
     private String country;
-    private String resume;
+    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "resume_id")
+    private Resume resume;
+    private String userId;
 }
